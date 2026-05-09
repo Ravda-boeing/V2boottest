@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Fade in after 2 seconds
         setTimeout(() => {
+
+            // ⭐ FORCE BROWSER TO PAINT INITIAL STATE (fixes invisible elements)
+            image.offsetHeight;
+
+            // Fade in
             image.style.opacity = "1";
             text.style.opacity = "1";
             bar.style.opacity = "1";
@@ -43,3 +48,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
