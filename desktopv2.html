@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sink OS V2 Desktop</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+
+      background-image: url("assets/Screenshot 2026-01-06 170316.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: rgba(17, 17, 17, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      color: white;
+    }
+
+    .desktop-icons {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .icon {
+      text-align: center;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+    }
+
+    .icon img {
+      width: 64px;
+      height: 64px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="desktop-icons">
+    <div class="icon" id="filesIcon">
+      <img src="assets/image-removebg-preview.png" alt="Folder">
+      <div>Files</div>
+    </div>
+  </div>
+
+  <div class="taskbar">
+    <span>Sink OS V2</span>
+  </div>
+
+  <script type="module" src="dist/desktop.js"></script>
+</body>
+</html>
