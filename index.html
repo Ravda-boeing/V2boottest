@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Sink OS Boot</title>
   <link rel="icon" href="favicon.png" type="image/x-icon">
-
   <style>
     body {
       margin: 0;
@@ -35,7 +34,6 @@
       margin-top: 20px;
     }
 
-    /* Config bar */
     #config-bar {
       width: 200px;
       height: 10px;
@@ -43,7 +41,6 @@
       border-radius: 5px;
       overflow: hidden;
       margin: 20px auto 0;
-      transition: opacity 1s ease;
     }
 
     #config-bar .block {
@@ -55,7 +52,7 @@
     }
 
     @keyframes slide {
-      0% { transform: translateX(-40px); }
+      0%   { transform: translateX(-40px); }
       100% { transform: translateX(200px); }
     }
 
@@ -64,24 +61,17 @@
       margin-top: 10px;
       color: black;
       font-size: 14px;
-      transition: opacity 1s ease;
     }
   </style>
 </head>
-
 <body>
-
-  <audio id="startupSound" src="V2BETABOOTUP.MP3"></audio>
-
+  <audio id="startupSound" src="V2BETABOOTUP.MP3" preload="auto"></audio>
   <img src="a modern and minimal.png" alt="Sink OS Boot Image" id="boot-image" />
   <h3 id="boot-text">Private testing 1 V2</h3>
-
   <div id="config-bar">
     <div class="block"></div>
   </div>
-
   <div id="config-label">Configuring beta OS</div>
-
-  <script type="module" src="boot.js?v=1"></script>
+  <script src="boot.js?v=1"></script>
 </body>
 </html>
