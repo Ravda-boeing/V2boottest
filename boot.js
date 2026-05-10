@@ -1,51 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const image = document.getElementById("boot-image");
+  const text  = document.getElementById("boot-text");
+  const sound = document.getElementById("startupSound");
+  const bar   = document.getElementById("config-bar");
+  const label = document.getElementById("config-label");
 
-    const image = document.getElementById("boot-image");
-    const text = document.getElementById("boot-text");
-    const sound = document.getElementById("startupSound");
-    const bar = document.getElementById("config-bar");
-    const label = document.getElementById("config-label");
+  if (!image || !text || !sound || !bar || !label) {
+    console.error("Boot elements missing — check your HTML IDs.");
+    return;
+  }
 
-    if (image && text && sound && bar && label) {
+  // Play startup sound, fall back to next user interaction if blocked
+  const tryPlay = () => sound.play().catch(() => {
+    document.addEventListener("click", () => sound.play(), { once: true });
+  });
+  tryPlay();
 
-        // Try to play sound
-        sound.play().catch(() => {
-            document.body.addEventListener("click", () => sound.play(), { once: true });
-        });
+  // Fade everything in after 2s using double rAF to guarantee a paint cycle
+  setTimeout(() => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        image.style.opacity = "1";
+        text.style.opacity  = "1";
+        bar.style.opacity   = "1";
+        label.style.opacity = "1";
+      });
+    });
 
-        // Fade in after 2 seconds
-        setTimeout(() => {
+    // Hold for 9s then fade out
+    setTimeout(() => {
+      image.style.opacity = "0";
+      text.style.opacity  = "0";
+      bar.style.opacity   = "0";
+      label.style.opacity = "0";
 
-            // ⭐ FORCE BROWSER TO PAINT INITIAL STATE (fixes invisible elements)
-            image.offsetHeight;
+      // Redirect after fade-out transition completes (2s)
+      setTimeout(() => {
+        window.location.href = "lockscreenv2.html";
+      }, 2000);
 
-            // Fade in
-            image.style.opacity = "1";
-            text.style.opacity = "1";
-            bar.style.opacity = "1";
-            label.style.opacity = "1";
-
-            // Stay visible for 9 seconds
-            setTimeout(() => {
-
-                // Fade out over 2 seconds
-                image.style.opacity = "0";
-                text.style.opacity = "0";
-                bar.style.opacity = "0";
-                label.style.opacity = "0";
-
-                // Redirect after fade-out
-                setTimeout(() => {
-                    window.location.href = "lockscreenv2.html";
-                }, 2000);
-
-            }, 9000);
-
-        }, 2000);
-
-    } else {
-        console.error("Boot elements missing or wrong type.");
-    }
-
+    }, 9000);
+  }, 2000);
 });
-
